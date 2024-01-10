@@ -5,6 +5,8 @@ from video_checker.video_checker_factory import VideoCheckerFactory
 from view.ui import VideoCheckerUI
 
 
+
+
 def main(page):
 
     app_ui = VideoCheckerUI(page)

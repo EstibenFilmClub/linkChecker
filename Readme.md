@@ -6,3 +6,7 @@
 
 Flet
 playwright
+pip install openpyxl
+
+
+# you have to set up a  key of the API youtube
