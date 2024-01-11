@@ -1,15 +1,18 @@
-import flet
 from src.video_checker.video_checker_factory import VideoCheckerFactory
-import asyncio
-class VideoCheckerUI:
 
+import flet
+import asyncio
+
+
+class VideoCheckerUI:
 
     def __init__(self, page):
         self.page = page
         self.factory = VideoCheckerFactory()
-    
+
     def create_ui(self):
-        self.url_input = flet.TextField(label="Ingresa la URL del video ", width=300)
+        self.url_input = flet.TextField(
+            label="Ingresa la URL del video ", width=300)
         self.platform_selector = flet.Dropdown(
             label="Selecciona la plataforma",
             options=[
@@ -25,7 +28,8 @@ class VideoCheckerUI:
 
         self.submit_button.on_click = self.on_submit_click
 
-        self.page.add(self.url_input, self.platform_selector, self.submit_button, self.result_label)
+        self.page.add(self.url_input, self.platform_selector,
+                      self.submit_button, self.result_label)
 
     async def check_video(self, url):
         use_api = self.platform_selector.value == "YouTube API"
