@@ -1,5 +1,5 @@
 import flet
-from video_checker.video_checker_factory import VideoCheckerFactory
+from src.video_checker.video_checker_factory import VideoCheckerFactory
 import asyncio
 class VideoCheckerUI:
 

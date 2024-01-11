@@ -1,8 +1,6 @@
 #index.py
 import flet
-from video_checker.video_checker_factory import VideoCheckerFactory
-
-from view.ui import VideoCheckerUI
+from src.view.ui import VideoCheckerUI
 
 
 
