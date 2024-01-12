@@ -1,7 +1,14 @@
-from video_checker.youtube_video_checker import YouTubeVideoChecker
-from video_checker.youtube_api_video_checker import YouTubeApiVideoChecker
+from .youtube_api_video_checker import YouTubeApiVideoChecker
+from .youtube_video_checker import YouTubeVideoChecker
 
-from video_checker.netflix_video_checker import NetflixVideoChecker
+from .netflix_video_checker import NetflixVideoChecker
+
+
+# from video_checker.youtube_video_checker import YouTubeVideoChecker
+# from video_checker.youtube_api_video_checker import YouTubeApiVideoChecker
+
+# from video_checker.netflix_video_checker import NetflixVideoChecker
+
 
 class VideoCheckerFactory:
     @staticmethod

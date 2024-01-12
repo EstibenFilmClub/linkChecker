@@ -4,9 +4,12 @@
 
 # the dependencies installed are
 
-Flet
-playwright
+pip install flet
+pip install --upgrade pip
+pip install playwright
+playwright install
 pip install openpyxl
-
+python-dotenv
+python-decouple
 
 # you have to set up a  key of the API youtube in one .env 

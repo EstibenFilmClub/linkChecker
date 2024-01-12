@@ -1,8 +1,8 @@
-from video_checker.video_checker_interface import VideoCheckerInterface
+from .video_checker_interface import VideoCheckerInterface
 import asyncio
 from playwright.async_api import async_playwright
-from url_checker.url_checker import URLChecker
-from save.save import ExcelRecorder
+from src.url_checker.url_checker import URLChecker
+from src.save.save import ExcelRecorder
 
 
 class NetflixVideoChecker(VideoCheckerInterface):
@@ -10,9 +10,9 @@ class NetflixVideoChecker(VideoCheckerInterface):
         self.excel_recorder = ExcelRecorder()
 
     async def check_video_availability(self, url):
-       
+
         url_checker = URLChecker()
-        
+
         # Comprobar si la URL es una URL de Netflix válida
         if not url_checker.is_netflix_url(url):
             print("La URL no corresponde a un video de Netflix válido.")
@@ -30,17 +30,17 @@ class NetflixVideoChecker(VideoCheckerInterface):
             # Buscar el título del video usando data-testid
             video_title = await page.query_selector('[data-testid="Title"]')
 
-
-
             if video_title:
                 # Si se encuentra el título, se asume que el video está disponible
                 title_text = await video_title.text_content()
                 if title_text.strip():
+                    estado=1
                     print(f"El video está disponible: {title_text}")
-                    self.excel_recorder.add_video_info(url, title_text)
+                    self.excel_recorder.add_video_info(url, title_text, estado)
                     return f"El video está disponible: {title_text}"
                 else:
-                    print("No se encontró el título del video, puede que no esté disponible.")
+                    print(
+                        "No se encontró el título del video, puede que no esté disponible.")
                     return "No se encontró el título del video, puede que no esté disponible."
 
             # Cerrar el navegador

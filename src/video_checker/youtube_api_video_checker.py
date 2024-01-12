@@ -1,11 +1,15 @@
-import requests
-from video_checker.video_checker_interface import VideoCheckerInterface
 from decouple import config
-from url_checker.url_checker import URLChecker
-from url_checker.url_extract_id import YouTubeURLParser
-from save.save import ExcelRecorder
+
+from src.save.save import ExcelRecorder
+
+from .video_checker_interface import VideoCheckerInterface
+from src.url_checker.url_checker import URLChecker
+from src.url_checker.url_extract_id import YouTubeURLParser
+
+import requests
 
 # video_checker.py
+
 
 class YouTubeApiVideoChecker(VideoCheckerInterface):
 
@@ -14,33 +18,36 @@ class YouTubeApiVideoChecker(VideoCheckerInterface):
         self.api_key = config('YOUTUBE_API')
 
     async def check_video_availability(self, url):
-        
+
         url_checker = URLChecker()
-        
+
         # Comprobar si la URL es una URL de YouTube válida
         if not url_checker.is_youtube_url(url):
             print("La URL no corresponde a un video de YouTube válido.")
             return "La URL no corresponde a un video de YouTube válido."
         url_parser = YouTubeURLParser(url)
         video_id = url_parser.extract_video_id()
-        
+
         base_url = "https://www.googleapis.com/youtube/v3/videos"
         params = {
             "key": self.api_key,
             "id": video_id,
             "part": "snippet, status",
         }
-        
+
         response = requests.get(base_url, params=params)
-        print("respuesta: ",response)
+        print("respuesta: ", response)
         if response.status_code == 200:
             data = response.json()
             if "items" in data and len(data["items"]) > 0:
                 video_status = data["items"][0]["status"]["uploadStatus"]
+                title = data["items"][0]["snippet"]["title"]
+                
                 if video_status == "processed":
                     self.print_video_available()
-                    print("data: ", data)
-                  
+                    estado=1 
+                    print("El video está disponible en YouTube.: ")
+                    self.excel_recorder.add_video_info(url, title, estado) 
                     return "El video está disponible en YouTube."
 
                 else:

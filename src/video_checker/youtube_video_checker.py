@@ -1,14 +1,15 @@
-from video_checker.video_checker_interface import VideoCheckerInterface
+from .video_checker_interface import VideoCheckerInterface
 
 # video_checker.py
 import asyncio
 from playwright.async_api import async_playwright
-from url_checker.url_checker import URLChecker
+from src.url_checker.url_checker import URLChecker
+
 
 class YouTubeVideoChecker(VideoCheckerInterface):
     async def check_video_availability(self, url):
         url_checker = URLChecker()
-        
+
         # Comprobar si la URL es una URL de YouTube válida
         if not url_checker.is_youtube_url(url):
             print("La URL no corresponde a un video de YouTube válido.")
@@ -21,8 +22,6 @@ class YouTubeVideoChecker(VideoCheckerInterface):
 
             # Ir a la URL del video
             await page.goto(url)
-
-            
 
             # Buscar el contenedor del video
             video_container = await page.query_selector(".html5-video-container")
@@ -41,7 +40,7 @@ class YouTubeVideoChecker(VideoCheckerInterface):
                     else:
                         unavailable_message = await page.query_selector(".promo-title.style-scope.ytd-background-promo-renderer")
                         error_text = await unavailable_message.text_content()
-                        print(f"No se encontró el video. "+ error_text)
+                        print(f"No se encontró el video. " + error_text)
                         return f"No se encontró el video. {error_text}"
             else:
                 print("No se encontró el contenedor del video contacta con soporte.")
