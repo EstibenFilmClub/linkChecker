@@ -1,3 +1,5 @@
 env/
 linkvenv/
 entorno/
+
+__pycache__/
