@@ -1,2 +1,5 @@
-.env
-entorno
+env/
+linkvenv/
+entorno/
+
+__pycache__/
