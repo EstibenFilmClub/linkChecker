@@ -49,4 +49,3 @@ class ExcelRecorder:
 
         # Guardar el archivo
         workbook.save(self.filename)
-

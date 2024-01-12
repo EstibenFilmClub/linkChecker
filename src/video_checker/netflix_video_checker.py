@@ -34,8 +34,9 @@ class NetflixVideoChecker(VideoCheckerInterface):
                 # Si se encuentra el título, se asume que el video está disponible
                 title_text = await video_title.text_content()
                 if title_text.strip():
+                    estado=1
                     print(f"El video está disponible: {title_text}")
-                    self.excel_recorder.add_video_info(url, title_text)
+                    self.excel_recorder.add_video_info(url, title_text, estado)
                     return f"El video está disponible: {title_text}"
                 else:
                     print(
