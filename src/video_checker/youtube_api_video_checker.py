@@ -41,10 +41,13 @@ class YouTubeApiVideoChecker(VideoCheckerInterface):
             data = response.json()
             if "items" in data and len(data["items"]) > 0:
                 video_status = data["items"][0]["status"]["uploadStatus"]
+                title = data["items"][0]["snippet"]["title"]
+                
                 if video_status == "processed":
                     self.print_video_available()
-                    print("data: ", data)
-
+                    estado=1 
+                    print("El video está disponible en YouTube.: ")
+                    self.excel_recorder.add_video_info(url, title, estado) 
                     return "El video está disponible en YouTube."
 
                 else:
