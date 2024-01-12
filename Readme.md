@@ -1,29 +1,34 @@
-# Depencies
-- docker
-- docker-compose
+# Run with Docker 
 
-# Install
-Go to the root of the project, and typing:
-```
-docker-compose up 
-```
-Stop docker 
-```
-docker-compose down
-```
+##  Dependencies in your OS
+    - docker
+    - docker-compose
 
-# To run the script you have to posicionate in the directory of the enviroment and run the script
+## Install
+    Go to the root of the project, and typing:
+    ```
+    docker-compose up 
+    ```
+    Stop docker 
+    ```
+    docker-compose down
+    ```
 
-```python index.py```
+# Run with Python
 
-# the dependencies installed are
+## To run the script you have to posicionate in the directory of the enviroment and run the script
 
-- pip install flet
-- pip install --upgrade pip
-- pip install playwright
-- playwright install
-- pip install openpyxl
-- python-dotenv
-- python-decouple
+    ```python index.py```
 
-# you have to set up a  key of the API youtube in one .env 
+## the dependencies installed are
+
+    - pip install flet
+    - pip install --upgrade pip
+    - pip install playwright
+    - playwright install
+    - pip install openpyxl
+    - python-dotenv
+    - python-decouple
+
+# Notes
+- You have to set up a  key of the API youtube in one .env 

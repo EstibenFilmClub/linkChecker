@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: fetweb-linkador
+    image: image-linkador:0.1
     ports:
       - "8000:8000"
     command: ["python", "Index.py"]
