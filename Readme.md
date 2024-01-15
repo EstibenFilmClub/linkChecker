@@ -8,7 +8,7 @@
 
 Go to the root of the project, and typing:
 ```
-docker-compose up 
+docker-compose up --build 
 ```
 Stop docker 
 ```

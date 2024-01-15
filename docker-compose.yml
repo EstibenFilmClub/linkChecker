@@ -2,11 +2,11 @@ version: "3.9"
 
 services:
   fetweb:
+    image: fetweb-link:0.1
     build:
-      context: .
+      context: ./
       dockerfile: Dockerfile
     container_name: fetweb-linkador
-    image: image-linkador:0.1
     ports:
       - "8000:8000"
     command: ["python", "Index.py"]
